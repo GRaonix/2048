@@ -39,3 +39,16 @@ export const generateRandom = (board) => {
     return board;
 };
 
+const compress = (board) => {
+    const newBoard = getEmptyBoard();
+    for (let i = 0; i < board.length; i++) {
+        let colIndex = 0;
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] !== 0) {
+                newBoard[i][colIndex] = board[i][j];
+                colIndex++;
+            }
+        }
+    }
+    return newBoard;
+};
