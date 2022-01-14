@@ -1,10 +1,11 @@
+// initializing 4*4x board
 export const getEmptyBoard = () => [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ];
-
+//check if the board is full
 const hasValue = (board, value) => {
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
@@ -19,7 +20,7 @@ const hasValue = (board, value) => {
 export const isFull = (board) => {
     return !hasValue(board, 0);
 };
-
+//assign random values to empty cells.
 const getRandomPosition = () => {
     const rowPosition = Math.floor(Math.random() * 4);
     const colPosition = Math.floor(Math.random() * 4);
@@ -38,7 +39,7 @@ export const generateRandom = (board) => {
     board[row][col] = 2;
     return board;
 };
-
+//move the board to the left
 const compress = (board) => {
     const newBoard = getEmptyBoard();
     for (let i = 0; i < board.length; i++) {
