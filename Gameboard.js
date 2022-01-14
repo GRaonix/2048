@@ -71,3 +71,15 @@ const merge = (board) => {
      const newBoard2 = merge(newBoard1);
      return compress(newBoard2);
  };
+
+ const reverse = (board) => {
+     const reverseBoard = getEmptyBoard();
+
+     for (let i = 0; i < board.length; i++) {
+         for (let j = 0; j < board[i].length; j++) {
+             reverseBoard[i][j] = board[i][board[i].length - 1 - j];
+         }
+     }
+
+     return reverseBoard;
+ };
