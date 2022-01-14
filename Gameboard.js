@@ -64,3 +64,9 @@ const merge = (board) => {
     }
     return board;
 }
+
+ export const moveLeft = (board) => {
+     const newBoard1 = compress(board);
+     const newBoard2 = merge(newBoard1);
+     return compress(newBoard2);
+ };
