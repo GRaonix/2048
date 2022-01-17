@@ -83,3 +83,77 @@ const merge = (board) => {
 
      return reverseBoard;
  };
+
+ export const moveRight = (board) => {
+     const reverseBoard = reverseBoard(board);
+     const newBoard = moveLeft(reverseBoard);
+     return reverse(newBoard);
+ };
+
+ const rotateLeft = (board) => {
+     const rotateBoard = getEmptyBoard();
+
+     for (let i = 0; i < board.length; i++) {
+     for (let j = 0; j < board[i].length; j++) {
+         rotateBoard[i][j] = board[j][board[i].length - 1 - i];
+     }
+ }
+
+    return reverseBoard;
+};
+
+const rotateRight = (board) => {
+    const rotateBoard = getEmptyBoard();
+
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            rotateBoard[i][j] = board[board[i].length - 1 - j][i];
+        }
+    }
+
+    return rotateBoard;
+}
+
+export const moveUp = (board) => {
+    const rotateBoard = rotateLeft(board);
+    const newBoard = moveLeft(rotateBoard);
+    return rotateRight(newBoard);
+};
+
+export const moveDown = (board) => {
+    const rotateBoard = rotateRight(board);
+    const newBoard = moveLeft(rotateBoard);
+    return rotateLeft(newBoard);
+};
+
+export const checkWin = (board) => {
+    return hasValue(board, 2048);
+};
+
+const hasDiff = (board,updateBoard) => {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++){
+            if (board[i][j] !== updateBoard[i][j]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+export const isOver = (board) => {
+    if (hasDiff(board, moveLeft(board))) {
+        return false;
+    }
+    if (hasDiff(board, moveRight(board))) {
+        return false;
+    }
+    if (hasDiff(board, moveUp(board))) {
+        return false;
+    }
+    if (hasDiff(board, moveDown(board))) {
+        return false;
+    }
+    return true;
+};
+
